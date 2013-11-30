@@ -1,9 +1,10 @@
 {
 	"db": {
-		"port": 27101,
-		"host": "flame.mongohq.com",
+		"port": 27017,
+		"host": "localhost",
 		"username":"admin",
-		"password":"4dm1n"
+		"password":"4dm1n",
+		"authenticationenabled":false
 	},
 	"server": {
 		"port": 3000,
@@ -14,5 +15,8 @@
 		"allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS"
 	},
 	"flavor": "nounderscore",
-	"debug": true
+	"debug": true,
+	"routes": {
+		"allowMethods": "get,post,put,delete"
+	}
 }

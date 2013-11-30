@@ -46,6 +46,30 @@ app.configure(function(){
 	}	
 });
 
+
+/**
+ * Check If request route method Is Allowed
+ */
+function checkIfRouteIsAllowed( request,response,next ) {
+  var method = request.route.method;
+  var test = false;
+  var allowedMethods = config.routes.allowMethods.split(',');
+  console.log("config.routes.allowMethods",allowedMethods);
+  for( i in allowedMethods ) {
+    console.log("allowed,given",allowedMethods[i] ,method);
+    if( method === allowedMethods[i] ) {
+      test = true;
+      break;
+    }
+  }
+  if(test === false) {
+    response.jsonp('{"ok":"0","status":"invalid route"}');
+  } else {
+    next();/*can continue with request*/	
+  }
+}
+app.all('*',checkIfRouteIsAllowed);
+
 require('./lib/main');
 require('./lib/command');
 require('./lib/rest');
